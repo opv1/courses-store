@@ -18,18 +18,18 @@ const ordersRoutes = require('./routes/orders');
 const authRoutes = require('./routes/auth');
 const varMiddleware = require('./middleware/variables');
 const userMiddleware = require('./middleware/user');
-const MONGODB_URL =
-  'mongodb+srv://opv1:Jm0mb5mdWoSQYa16@cluster0.acxqe.mongodb.net/shop';
+const keys = require('./keys/index');
 
 const app = express();
 const hbs = expressHandlebars.create({
   defaultLayout: 'main',
   extname: 'hbs',
   handlebars: allowInsecurePrototypeAccess(Handlebars),
+  helpers: require('./utils/hbs-helpers'),
 });
 const store = new MongoStore({
   collection: 'sessions',
-  uri: MONGODB_URL,
+  uri: keys.MONGODB_URL,
 });
 
 app.engine('hbs', hbs.engine);
@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
-    secret: 'some',
+    secret: keys.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     store,
@@ -60,7 +60,7 @@ const PORT = process.env.PORT || 3000;
 
 async function start() {
   try {
-    await mongoose.connect(MONGODB_URL, {
+    await mongoose.connect(keys.MONGODB_URL, {
       useFindAndModify: false,
       useUnifiedTopology: true,
       useNewUrlParser: true,
