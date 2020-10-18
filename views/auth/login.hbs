@@ -10,7 +10,6 @@
       {{#if loginError}}
       <p class="alert">{{loginError}}</p>
       {{/if}}
-
       <h1>Войти в магазин</h1>
       <form action="/auth/login" method="POST">
         <div class="input-field">
@@ -18,13 +17,11 @@
           <label for="email">Email</label>
           <span class="helper-text" data-error="Введите email"></span>
         </div>
-
         <div class="input-field">
           <input id="password" name="password" type="password" class="validate" required>
           <label for="password">Пароль</label>
           <span class="helper-text" data-error="Введите пароль"></span>
         </div>
-
         <input type="hidden" name="_csrf" value="{{csrf}}">
         <p><a href="/auth/reset">Забыли пароль?</a></p>
         <button class="btn btn-primary" type="submit">Войти</button>
@@ -34,33 +31,28 @@
       {{#if registerError}}
       <p class="alert">{{registerError}}</p>
       {{/if}}
-
       <h1>Создать аккаунт</h1>
-      <form action="/auth/register" method="POST">
+      <form action="/auth/register" method="POST" novalidate>
         <div class="input-field">
           <input id="remail" name="email" type="email" class="validate" required>
           <label for="remail">Email</label>
           <span class="helper-text" data-error="Введите email"></span>
         </div>
-
         <div class="input-field">
           <input id="rpassword" name="password" type="password" class="validate" required>
           <label for="rpassword">Пароль</label>
           <span class="helper-text" data-error="Введите пароль"></span>
         </div>
-
         <div class="input-field">
           <input id="confirm" name="confirm" type="password" class="validate" required>
           <label for="confirm">Пароль еще раз</label>
           <span class="helper-text" data-error="Введите пароль"></span>
         </div>
-
         <div class="input-field">
           <input id="name" name="name" type="text" class="validate" required>
           <label for="name">Ваше имя</label>
           <span class="helper-text" data-error="Введите имя"></span>
         </div>
-
         <input type="hidden" name="_csrf" value="{{csrf}}">
         <button class="btn btn-primary" type="submit">Зарегистрироваться</button>
       </form>

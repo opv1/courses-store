@@ -3,7 +3,6 @@
     {{#if error}}
     <p class="alert">{{error}}</p>
     {{/if}}
-
     <h1>Забыли пароль?</h1>
     <form action="/auth/reset" method="POST">
       <div class="input-field">
@@ -11,7 +10,6 @@
         <label for="email">Email</label>
         <span class="helper-text" data-error="Введите email"></span>
       </div>
-
       <input type="hidden" name="_csrf" value="{{csrf}}">
       <button class="btn btn-primary" type="submit">Сбросить</button>
     </form>

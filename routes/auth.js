@@ -1,12 +1,14 @@
 const { Router } = require('express');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const { validationResult } = require('express-validator');
 const nodemailer = require('nodemailer');
 const sendgrid = require('nodemailer-sendgrid-transport');
 const User = require('../models/user');
 const keys = require('../keys/index');
 const regEmail = require('../emails/registration');
 const resetEmail = require('../emails/reset');
+const { registerValidators } = require('../utils/validators');
 const router = Router();
 
 const transporter = nodemailer.createTransport(
@@ -68,34 +70,34 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', registerValidators, async (req, res) => {
   try {
-    const { email, name, password, repeat } = req.body;
+    const { email, name, password } = req.body;
 
-    const candidate = await User.findOne({ email });
+    const errors = validationResult(req);
 
-    if (candidate) {
-      req.flash('registerError', 'Пользователь с таким email уже существует');
+    if (!errors.isEmpty()) {
+      req.flash('registerError', errors.array()[0].msg);
 
-      res.redirect('/auth/login#register');
-    } else {
-      const hashPassword = await bcrypt.hash(password, 10);
-
-      const user = new User({
-        email,
-        name,
-        password: hashPassword,
-        cart: {
-          items: [],
-        },
-      });
-
-      await user.save();
-
-      res.redirect('/auth/login#login');
-
-      await transporter.sendMail(regEmail(email));
+      return res.status(422).redirect('/auth/login#register');
     }
+
+    const hashPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      email,
+      name,
+      password: hashPassword,
+      cart: {
+        items: [],
+      },
+    });
+
+    await user.save();
+
+    res.redirect('/auth/login#login');
+
+    await transporter.sendMail(regEmail(email));
   } catch (error) {
     console.log(error);
   }
