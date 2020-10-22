@@ -7,10 +7,12 @@
 
 Store Courses
 
+Стек: HTML, CSS, Nodejs
+
 Проект написан по обучающему материалу от Владилена Минина:
 [Udemy](https://www.udemy.com/course/nodejs-full-guide/)
 
-## [Увидеть проект](https://opv1.github.io//)!!!!
+## [Увидеть проект](https://mighty-springs-20243.herokuapp.com/)
 
 ## Настройка проекта
 
