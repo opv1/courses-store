@@ -1,7 +1,8 @@
 {
-  "name": "nodejs",
+  "name": "courses-app-vm-nodejs",
   "version": "1.0.0",
-  "description": "",
+  "description": "Store Courses",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
