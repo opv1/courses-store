@@ -1,4 +1,4 @@
-const keys = require('../keys/index');
+const keys = require('../keys/index')
 
 module.exports = function (email) {
   return {
@@ -11,5 +11,5 @@ module.exports = function (email) {
       <hr/>
       <a href="${keys.BASE_URL}">Магазин курсов</a>
     `,
-  };
-};
+  }
+}

@@ -3,21 +3,16 @@
   <img src="https://img.shields.io/badge/made%20by-opv1-blue.svg">
 </p>
 
-## Описание
+## Description
 
-Store Courses
+Stack: Nodejs
 
-Стек: HTML, CSS, Nodejs
+## [See the project](https://mighty-springs-20243.herokuapp.com/)
 
-Проект написан по обучающему материалу от Владилена Минина:
-[Udemy](https://www.udemy.com/course/nodejs-full-guide/)
-
-## [Увидеть проект](https://mighty-springs-20243.herokuapp.com/)
-
-## Настройка проекта
+## Setup
 
 ```
-npm run start
+npm run build
 ```
 
 ```
