@@ -5,7 +5,6 @@ const flash = require('connect-flash')
 const Handlebars = require('handlebars')
 const expressHandlebars = require('express-handlebars')
 const mongoose = require('mongoose')
-const helmet = require('helmet')
 const compression = require('compression')
 const {
   allowInsecurePrototypeAccess,
@@ -34,7 +33,7 @@ const hbs = expressHandlebars.create({
 })
 const store = new MongoStore({
   collection: 'sessions',
-  uri: keys.MONGODB_URL,
+  uri: keys.MONGODB_URI,
 })
 
 app.engine('hbs', hbs.engine)
@@ -54,7 +53,6 @@ app.use(
 app.use(fileMiddleware.single('avatar'))
 app.use(csrf())
 app.use(flash())
-app.use(helmet())
 app.use(compression())
 app.use(varMiddleware)
 app.use(userMiddleware)
@@ -71,7 +69,7 @@ const PORT = process.env.PORT || 3000
 
 async function start() {
   try {
-    await mongoose.connect(keys.MONGODB_URL, {
+    await mongoose.connect(keys.MONGODB_URI, {
       useFindAndModify: false,
       useUnifiedTopology: true,
       useNewUrlParser: true,
