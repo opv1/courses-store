@@ -7,7 +7,7 @@
 
 Stack: Nodejs
 
-## [See the project](https://mighty-springs-20243.herokuapp.com/)
+## [See the project](https://courses-store-opv1.herokuapp.com/)
 
 ## Setup
 
